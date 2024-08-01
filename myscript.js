@@ -1,35 +1,70 @@
-body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
+document.addEventListener('DOMContentLoaded', function() {
+  // Get the textarea element for the notepad
+  const notepad = document.getElementById('notepad-content');
+  
+  // Load the saved content from localStorage if available
+  notepad.value = localStorage.getItem('autosave');
+  
+  // Listen for changes in the textarea content
+  notepad.addEventListener('input', function() {
+    // Save the content to localStorage
+    localStorage.setItem('autosave', notepad.value);
+  });
+  
+  // Get elements for main tap counter
+  const countDisplay = document.getElementById('count');
+  const incrementButton = document.getElementById('increment');
+  const resetButton = document.getElementById('reset');
+  
+  // Get elements for left and right counters
+  const leftCountDisplay = document.getElementById('left-count');
+  const rightCountDisplay = document.getElementById('right-count');
+  
+  // Load counts from localStorage or default to 0
+  let count = parseInt(localStorage.getItem('tapCount')) || 0;
+  let leftCount = parseInt(localStorage.getItem('leftTapCount')) || 0;
+  let rightCount = parseInt(localStorage.getItem('rightTapCount')) || 0;
+  
+  // Display counts
+  countDisplay.textContent = count;
+  leftCountDisplay.textContent = leftCount;
+  rightCountDisplay.textContent = rightCount;
+  
+  // Increment main count on button click
+  incrementButton.addEventListener('click', function() {
+    count++;
+    countDisplay.textContent = count;
+    localStorage.setItem('tapCount', count);
+  });
+  
+  // Reset all counts on button click
+  resetButton.addEventListener('click', function() {
+    count = 0;
+    leftCount = 0;
+    rightCount = 0;
+    countDisplay.textContent = count;
+    leftCountDisplay.textContent = leftCount;
+    rightCountDisplay.textContent = rightCount;
+    localStorage.setItem('tapCount', count);
+    localStorage.setItem('leftTapCount', leftCount);
+    localStorage.setItem('rightTapCount', rightCount);
+  });
 
-.counter-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
+  // Increment left count on 'A' key press
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'a' || event.key === 'A') {
+      leftCount++;
+      leftCountDisplay.textContent = leftCount;
+      localStorage.setItem('leftTapCount', leftCount);
+    }
+  });
 
-.counter {
-  text-align: center;
-  margin: 0 20px; /* Space between counters */
-}
-
-.counter h1 {
-  color: black; /* Set header color to blue */
-}
-
-button {
-  font-size: 1.2rem;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
-}
-
-#count, #left-count, #right-count {
-  font-size: 3rem;
-}
+  // Increment right count on 'L' key press
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'l' || event.key === 'L') {
+      rightCount++;
+      rightCountDisplay.textContent = rightCount;
+      localStorage.setItem('rightTapCount', rightCount);
+    }
+  });
+});
