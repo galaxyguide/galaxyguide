@@ -1,38 +1,35 @@
-// myscript.js
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Get the textarea element for the notepad
-  const notepad = document.getElementById('notepad-content');
-  
-  // Load the saved content from localStorage if available
-  notepad.value = localStorage.getItem('autosave');
-  
-  // Listen for changes in the textarea content
-  notepad.addEventListener('input', function() {
-    // Save the content to localStorage
-    localStorage.setItem('autosave', notepad.value);
-  });
-  
-  // Get elements for tap counter
-  const countDisplay = document.getElementById('count');
-  const incrementButton = document.getElementById('increment');
-  const resetButton = document.getElementById('reset');
-  
-  // Load count from localStorage or default to 0
-  let count = parseInt(localStorage.getItem('tapCount')) || 0;
-  countDisplay.textContent = count;
-  
-  // Increment count on button click
-  incrementButton.addEventListener('click', function() {
-    count++;
-    countDisplay.textContent = count;
-    localStorage.setItem('tapCount', count);
-  });
-  
-  // Reset count on button click
-  resetButton.addEventListener('click', function() {
-    count = 0;
-    countDisplay.textContent = count;
-    localStorage.setItem('tapCount', count);
-  });
-});
+.counter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.counter {
+  text-align: center;
+  margin: 0 20px; /* Space between counters */
+}
+
+.counter h1 {
+  color: black; /* Set header color to blue */
+}
+
+button {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+#count, #left-count, #right-count {
+  font-size: 3rem;
+}
