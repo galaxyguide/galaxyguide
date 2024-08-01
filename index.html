@@ -17,20 +17,29 @@
     .notepad {
       width: 30%; /* Adjust as needed */
       max-width: 800px; /* Maximum width */
-      margin-bottom:1 20px; /* Space between sections */
+      margin-bottom: 20px; /* Space between sections */
     }
-    .counter {
+    .counter-container {
       width: 70%; /* Adjust as needed */
       max-width: 800px; /* Maximum width */
       margin-top: 20px; /* Space between sections */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .counter {
       text-align: center;
+      margin: 0 40px; /* Space between counters */
+    }
+    .counter h1 {
+      color: blue; /* Set header color to blue */
     }
     textarea {
       width: 100%; /* Full width of parent container */
       height: 150px;
       border: 1px solid #ccc;
       padding: 10px;
-      font-size: 14px;
+      font-size: 18px;
       resize: vertical;
       box-sizing: border-box; /* Include padding in width/height */
     }
@@ -42,7 +51,7 @@
       font-size: 16px;
       margin-top: 10px;
       padding: 8px 16px;
-      cursor: pointer;
+      cursor: pointer; 
     }
   </style>
 </head>
@@ -52,13 +61,24 @@
     <textarea id="notepad-content"></textarea>
   </div>
 
-  <div class="counter">
-    <h1>Tap Counter</h1>
-    <p>Count: <span id="count">0</span></p>
-    <button id="increment">Tap Me!</button>
-    <button id="reset">Reset</button>
+  <div class="counter-container">
+    <div class="counter">
+      <h2>Close Count</h2>
+      <p><span id="left-count">0</span></p>
+    </div>
+    <div class="counter">
+      <h1>Tap Me</h1>
+      <p><span id="count">0</span></p>
+      <button id="increment">Tap Me!</button>
+      <button id="reset">Reset</button>
+    </div>
+    <div class="counter">
+      <h2>Delay Count</h2>
+      <p><span id="right-count">0</span></p>
+    </div>
   </div>
 
   <!-- Scripts -->
   <script src="myscript.js"></script>
-  <script src="myscript.js"></sc
+</body>
+</html>
